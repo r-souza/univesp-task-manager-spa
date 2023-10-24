@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MaterialModule } from './material.module';
 import { LayoutModule } from '@angular/cdk/layout';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-
+import { MaterialModule } from './material.module';
 
 @NgModule({
   declarations: [],
@@ -12,12 +12,16 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     CommonModule,
     LayoutModule,
     FlexLayoutModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   exports: [
     MaterialModule,
     FlexLayoutModule,
-    LayoutModule
-  ]
+    LayoutModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}

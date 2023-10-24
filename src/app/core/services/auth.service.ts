@@ -14,7 +14,7 @@ import { TokenService } from './token.service';
   providedIn: 'root',
 })
 export class AuthService {
-  private authUrl = `${environment.apiBaseUrl}/auth/passport/callback`;
+  private authUrl = `${environment.apiBaseUrl}/auth/login`;
   private logoutUrl = `${environment.apiBaseUrl}/auth/logout`;
   private refreshUrl = `${environment.apiBaseUrl}/auth/refresh`;
   private currentUserUrl = `${environment.apiBaseUrl}/me`;
@@ -33,25 +33,33 @@ export class AuthService {
     return false;
   }
 
-  public login(providerToken: string): void {
-    const params = new HttpParams().set('code', providerToken);
+  // public login(providerToken: string): void {
+  //   const params = new HttpParams().set('code', providerToken);
 
-    this.apiService.getRequest<TokenDto>(this.authUrl, params).subscribe(
-      (data) => {
-        try {
-          this.tokenService.saveToken(data);
-        } catch {
-          this.tokenService.removeToken();
-          console.error('Error on save token');
-          this.router.navigate(['login']);
-        }
-        return this.redirectAfterLoggedIn();
-      },
-      (errorData) => {
-        console.error(errorData);
-        this.router.navigate(['login']);
-      }
-    );
+  //   this.apiService.getRequest<TokenDto>(this.authUrl, params).subscribe(
+  //     (data) => {
+  //       try {
+  //         this.tokenService.saveToken(data);
+  //       } catch {
+  //         this.tokenService.removeToken();
+  //         console.error('Error on save token');
+  //         this.router.navigate(['login']);
+  //       }
+  //       return this.redirectAfterLoggedIn();
+  //     },
+  //     (errorData) => {
+  //       console.error(errorData);
+  //       this.router.navigate(['login']);
+  //     }
+  //   );
+  // }
+
+  public login(email: string, password: string): Observable<TokenDto> {
+    const params = new HttpParams()
+      .set('email', email)
+      .set('password', password);
+
+    return this.apiService.postRequest<TokenDto>(this.authUrl, params);
   }
 
   public logout(): void {

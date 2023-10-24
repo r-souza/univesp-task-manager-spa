@@ -1,0 +1,57 @@
+<mat-card class="mat-elevation-z21">
+  <mat-card-header> </mat-card-header>
+  <mat-card-content>
+    <span>
+      <img class="logo" src="assets/images/univesp-logo.png" alt="logo" />
+    </span>
+    <div class="title">
+      <p class="mat-h2 title-header">Gerenciador de Tarefas</p>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div style="display: flex; flex-direction: column">
+        <mat-form-field>
+          <mat-label>E-mail</mat-label>
+          <input matInput formControlName="email" required />
+          <mat-error *ngIf="form?.get('email')?.hasError('required')">
+            Usuário é obrigatório
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Senha</mat-label>
+          <input matInput formControlName="password" type="password" required />
+          <mat-error *ngIf="form?.get('password')?.hasError('required')">
+            Senha é obrigatória
+          </mat-error>
+        </mat-form-field>
+
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="form.invalid"
+        >
+          <mat-icon>lock_open</mat-icon>
+          Entrar
+        </button>
+      </div>
+    </form>
+
+    <!-- <p class="mat-body">Clique no botão abaixo para autenticar-se</p>
+    <a [href]="loginUrl" mat-raised-button color="primary">
+      <mat-icon>login</mat-icon>
+      {{ loginButtonLabel }}
+    </a> -->
+  </mat-card-content>
+
+  <mat-card-footer>
+    <p class="mat-small">
+      Dúvida?
+      <a href="mailto:contato@rodrigosouza.eti.br">
+        Entre em contato conosco
+        <mat-icon inline>email</mat-icon>
+      </a>
+    </p>
+  </mat-card-footer>
+</mat-card>
