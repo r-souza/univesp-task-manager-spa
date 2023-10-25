@@ -30,6 +30,11 @@ const routes: Routes = [
         path: 'home',
         component: HomeComponent,
       },
+      {
+        path: 'projects',
+        loadChildren: () =>
+          import('./projects/projects.module').then((m) => m.ProjectsModule),
+      },
       { path: '**', redirectTo: '' },
     ],
   },
