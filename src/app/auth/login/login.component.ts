@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { throwError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
 
 import { AuthService } from '../../core/services/auth.service';
 import { environment } from './../../../environments/environment';
@@ -34,24 +32,12 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.form.value);
     const email = this.form.get('email')?.value;
     const password = this.form.get('password')?.value;
 
     if (this.ifFormValid()) {
       this.loginButtonLabel = 'Logando...';
-      this.authService
-        .login(email, password)
-        .pipe(
-          tap((data: any) => {
-            console.log(data);
-          }),
-          catchError((errorData: any) => {
-            console.error(errorData);
-            return throwError(errorData);
-          })
-        )
-        .subscribe();
+      this.authService.login(email, password);
     }
   }
 }

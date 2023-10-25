@@ -33,33 +33,28 @@ export class AuthService {
     return false;
   }
 
-  // public login(providerToken: string): void {
-  //   const params = new HttpParams().set('code', providerToken);
-
-  //   this.apiService.getRequest<TokenDto>(this.authUrl, params).subscribe(
-  //     (data) => {
-  //       try {
-  //         this.tokenService.saveToken(data);
-  //       } catch {
-  //         this.tokenService.removeToken();
-  //         console.error('Error on save token');
-  //         this.router.navigate(['login']);
-  //       }
-  //       return this.redirectAfterLoggedIn();
-  //     },
-  //     (errorData) => {
-  //       console.error(errorData);
-  //       this.router.navigate(['login']);
-  //     }
-  //   );
-  // }
-
-  public login(email: string, password: string): Observable<TokenDto> {
+  public login(email: string, password: string): void {
     const params = new HttpParams()
       .set('email', email)
       .set('password', password);
 
-    return this.apiService.postRequest<TokenDto>(this.authUrl, params);
+    this.apiService.postRequest<TokenDto>(this.authUrl, params).subscribe({
+      next: (data: TokenDto) => {
+        console.log(data);
+        try {
+          this.tokenService.saveToken(data);
+        } catch (e) {
+          console.error(e);
+          this.logoutActions();
+        }
+
+        this.redirectAfterLoggedIn();
+      },
+      error: (err) => {
+        console.error(err);
+        this.logoutActions();
+      },
+    });
   }
 
   public logout(): void {

@@ -14,7 +14,7 @@
           <mat-label>E-mail</mat-label>
           <input matInput formControlName="email" required />
           <mat-error *ngIf="form?.get('email')?.hasError('required')">
-            Usuário é obrigatório
+            E-mail é obrigatório
           </mat-error>
         </mat-form-field>
 
@@ -33,16 +33,10 @@
           [disabled]="form.invalid"
         >
           <mat-icon>lock_open</mat-icon>
-          Entrar
+          {{ loginButtonLabel }}
         </button>
       </div>
     </form>
-
-    <!-- <p class="mat-body">Clique no botão abaixo para autenticar-se</p>
-    <a [href]="loginUrl" mat-raised-button color="primary">
-      <mat-icon>login</mat-icon>
-      {{ loginButtonLabel }}
-    </a> -->
   </mat-card-content>
 
   <mat-card-footer>
