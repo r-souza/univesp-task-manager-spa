@@ -16,17 +16,15 @@ export class ApiService {
   }
 
   postRequest<T>(url: string, resource: any): Observable<T> {
-    return this.http.post<T>(
-      url,
-      resource
-    );
+    return this.http.post<T>(url, resource);
   }
 
   putRequest<T>(url: string, resource: any): Observable<T> {
-    return this.http.put<T>(
-      url,
-      resource
-    );
+    return this.http.put<T>(url, resource);
+  }
+
+  patchRequest<T>(url: string, resource: any): Observable<T> {
+    return this.http.patch<T>(url, resource);
   }
 
   deleteRequest<T>(url: string): Observable<T> {
