@@ -4,10 +4,18 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { AddButtonComponent, TableSearchFieldComponent } from './components';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { MaterialModule } from './material.module';
 
+const sharedComponents = [
+  AddButtonComponent,
+  TableSearchFieldComponent,
+  LoadingSpinnerComponent,
+];
+
 @NgModule({
-  declarations: [],
+  declarations: [...sharedComponents],
   imports: [
     CommonModule,
     LayoutModule,
@@ -22,6 +30,7 @@ import { MaterialModule } from './material.module';
     LayoutModule,
     FormsModule,
     ReactiveFormsModule,
+    ...sharedComponents,
   ],
 })
 export class SharedModule {}

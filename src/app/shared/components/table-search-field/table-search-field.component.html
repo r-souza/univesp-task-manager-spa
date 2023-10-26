@@ -1,0 +1,10 @@
+<mat-form-field>
+  <input
+    (keydown.esc)="cleanSearch()"
+    matInput
+    [placeholder]="placeholder"
+    #input
+  />
+  <mat-icon matSuffix>search</mat-icon>
+  <mat-hint>{{ hint }}</mat-hint>
+</mat-form-field>
