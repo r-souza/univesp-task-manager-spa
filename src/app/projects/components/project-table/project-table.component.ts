@@ -79,7 +79,7 @@ export class ProjectTableComponent implements AfterViewInit {
   }
 
   onRowDoubleClick(project: Project): void {
-    this.openEditDialog(project);
+    this.open(project);
   }
 
   open(row: Project): void {
