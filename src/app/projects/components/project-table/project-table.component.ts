@@ -3,6 +3,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { tap } from 'rxjs';
 
 import { PaginationOptionsDto } from '../../../shared/dtos/pagination-options.dto';
@@ -28,11 +29,12 @@ export class ProjectTableComponent implements AfterViewInit {
   private filter: string = '';
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns: string[] = ['id', 'name', 'description'];
+  displayedColumns: string[] = ['id', 'name', 'description', 'actions'];
 
   constructor(
     private projectService: ProjectService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
   ) {
     this.dataSource = new ProjectTableDataSource(this.projectService);
     this.dataSource.load();
@@ -80,11 +82,14 @@ export class ProjectTableComponent implements AfterViewInit {
     this.openEditDialog(project);
   }
 
+  open(row: Project): void {
+    this.router.navigate(['/projects', row.id]);
+  }
+
   openEditDialog(project: Project): void {
     const dialogRef: MatDialogRef<ProjectFormDialogComponent> =
       this.dialog.open(ProjectFormDialogComponent, {
-        width: '800px',
-        height: '480px',
+        width: '720px',
         data: project,
       });
 

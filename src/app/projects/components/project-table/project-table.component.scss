@@ -8,12 +8,20 @@
   margin-top: 20px;
 }
 
-// mat-paginator {
-//   width: 100%;
-//   margin: 0 auto;
-//   margin-bottom: 20px;
-// }
+mat-paginator {
+  width: 100%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
 
-.mat-column-identification {
+.mat-column-id {
   width: 75px;
+}
+
+.mat-column-actions {
+  min-width: 130px;
+}
+
+.mat-column-description {
+  min-width: 250px;
 }
