@@ -15,6 +15,11 @@ export class ApiService {
     return this.http.get<T>(url, { params });
   }
 
+  getById<T>(resourceUrl: string, id: number): Observable<T> {
+    const url = `${resourceUrl}/${id}`;
+    return this.getRequest<T>(url);
+  }
+
   postRequest<T>(url: string, resource: any): Observable<T> {
     return this.http.post<T>(url, resource);
   }

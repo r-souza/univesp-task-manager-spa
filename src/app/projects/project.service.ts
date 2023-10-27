@@ -1,11 +1,12 @@
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 import { ApiService } from '../core/services';
 import { PaginationDto, PaginationOptionsDto } from '../shared/dtos';
 import { CreateProjectDto } from './dtos/create-project.dto';
+import { GetProjectDto } from './dtos/get-project.dto';
 import { Project } from './models/project.model';
 
 @Injectable({
@@ -28,6 +29,14 @@ export class ProjectService {
       this.resourceUrl,
       params
     );
+  }
+
+  getById(id: number): Observable<Project> {
+    return this.apiService
+      .getById<GetProjectDto>(this.resourceUrl, id)
+      .pipe(
+        map((response: GetProjectDto): Project => new Project(response.data))
+      );
   }
 
   create(resource: CreateProjectDto): Observable<Project> {

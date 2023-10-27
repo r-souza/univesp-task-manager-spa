@@ -8,9 +8,10 @@ import { ProjectsRoutingModule } from './projects-routing.module';
 import { ProjectTableComponent } from './components/project-table/project-table.component';
 import { ProjectFormDialogComponent } from './components/project-form-dialog/project-form-dialog.component';
 import { ProjectFormComponent } from './components/project-form/project-form.component';
+import { ProjectShowComponent } from './project-show/project-show.component';
 
 @NgModule({
-  declarations: [ProjectListComponent, ProjectTableComponent, ProjectFormDialogComponent, ProjectFormComponent],
+  declarations: [ProjectListComponent, ProjectTableComponent, ProjectFormDialogComponent, ProjectFormComponent, ProjectShowComponent],
   imports: [CommonModule, ProjectsRoutingModule, MaterialModule, SharedModule],
 })
 export class ProjectsModule {}
