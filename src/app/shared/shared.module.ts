@@ -8,6 +8,7 @@ import { AddButtonComponent, TableSearchFieldComponent } from './components';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { PrioritySelectComponent } from './components/priority-select/priority-select.component';
 import { StatusSelectComponent } from './components/status-select/status-select.component';
+import { UserSelectComponent } from './components/user-select/user-select.component';
 import { MaterialModule } from './material.module';
 
 const sharedComponents = [
@@ -16,6 +17,7 @@ const sharedComponents = [
   LoadingSpinnerComponent,
   StatusSelectComponent,
   PrioritySelectComponent,
+  UserSelectComponent,
 ];
 
 @NgModule({
