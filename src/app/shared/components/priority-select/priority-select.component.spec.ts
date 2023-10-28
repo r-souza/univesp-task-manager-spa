@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PriotitySelectComponent } from './priority-select.component';
+import { PrioritySelectComponent } from './priority-select.component';
 
-describe('PriotitySelectComponent', () => {
-  let component: PriotitySelectComponent;
-  let fixture: ComponentFixture<PriotitySelectComponent>;
+describe('PrioritySelectComponent', () => {
+  let component: PrioritySelectComponent;
+  let fixture: ComponentFixture<PrioritySelectComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [PriotitySelectComponent],
+      declarations: [PrioritySelectComponent],
     });
-    fixture = TestBed.createComponent(PriotitySelectComponent);
+    fixture = TestBed.createComponent(PrioritySelectComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
