@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSelectChange } from '@angular/material/select';
 import { ApiService } from 'src/app/core/services';
 import { environment } from 'src/environments/environment';
@@ -34,8 +34,7 @@ export class PrioritySelectComponent implements OnInit {
 
   ngOnInit(): void {
     this.selectPriorityFormGroup = this.formBuilder.group({
-      name: [this.value, Validators.required],
-      description: [''],
+      name: [this.value],
     });
 
     this.getPriorities();
