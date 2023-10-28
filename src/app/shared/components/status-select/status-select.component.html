@@ -1,0 +1,20 @@
+<form [formGroup]="selectStatusFormGroup">
+  <mat-form-field>
+    <mat-select
+      placeholder="Status"
+      formControlName="name"
+      [required]="required"
+      (keydown.esc)="reset()"
+      (selectionChange)="onSelectionChange($event)"
+    >
+      <mat-option *ngIf="filtering">Todos</mat-option>
+      <mat-option *ngFor="let status of statuses" [value]="status.id">
+        {{ status.name }}
+      </mat-option>
+    </mat-select>
+    <mat-hint *ngIf="filtering">Pressione ESC para limpar</mat-hint>
+    <mat-error *ngIf="selectStatusFormGroup?.get('name')?.hasError('required')">
+      Status é obrigatório
+    </mat-error>
+  </mat-form-field>
+</form>
