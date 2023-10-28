@@ -40,8 +40,8 @@ export class UserSelectComponent implements OnInit {
     this.getUsers();
   }
 
-  onSelectionChange(event: { value: MatSelectChange }): void {
-    this.selectionChange.emit(event.value);
+  onSelectionChange(event: MatSelectChange): void {
+    this.selectionChange.emit(event);
   }
 
   reset(): void {
