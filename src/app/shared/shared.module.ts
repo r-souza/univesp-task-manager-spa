@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AddButtonComponent, TableSearchFieldComponent } from './components';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
+import { PrioritySelectComponent } from './components/priority-select/priority-select.component';
 import { StatusSelectComponent } from './components/status-select/status-select.component';
 import { MaterialModule } from './material.module';
 
@@ -14,6 +15,7 @@ const sharedComponents = [
   TableSearchFieldComponent,
   LoadingSpinnerComponent,
   StatusSelectComponent,
+  PrioritySelectComponent,
 ];
 
 @NgModule({

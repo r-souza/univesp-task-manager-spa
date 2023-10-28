@@ -1,0 +1,22 @@
+<form [formGroup]="selectPriorityFormGroup">
+  <mat-form-field>
+    <mat-select
+      placeholder="Priority"
+      formControlName="name"
+      [required]="required"
+      (keydown.esc)="reset()"
+      (selectionChange)="onSelectionChange($event)"
+    >
+      <mat-option *ngIf="filtering">Todos</mat-option>
+      <mat-option *ngFor="let priority of priorities" [value]="priority.id">
+        {{ priority.name }}
+      </mat-option>
+    </mat-select>
+    <mat-hint *ngIf="filtering">Pressione ESC para limpar</mat-hint>
+    <mat-error
+      *ngIf="selectPriorityFormGroup?.get('name')?.hasError('required')"
+    >
+      Prioridade é obrigatória
+    </mat-error>
+  </mat-form-field>
+</form>
