@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -36,6 +37,7 @@ const materialModules = [
   MatMomentDateModule,
   MatProgressSpinnerModule,
   MatSelectModule,
+  MatCheckboxModule,
 ];
 
 @NgModule({

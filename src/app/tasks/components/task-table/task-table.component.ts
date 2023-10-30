@@ -1,4 +1,10 @@
-import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  Input,
+  OnChanges,
+  ViewChild,
+} from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -6,7 +12,7 @@ import { MatTable } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs';
 
-import { Task } from '../../models/task.model';
+import { Task, TaskStatus } from '../../models/task.model';
 import { TaskService } from '../../task.service';
 import { TaskFormDialogComponent } from '../task-form-dialog/task-form-dialog.component';
 import { TableSearchFieldComponent } from './../../../shared/components';
@@ -17,7 +23,7 @@ import { TaskTableDataSource } from './task-table-datasource';
   templateUrl: './task-table.component.html',
   styleUrls: ['./task-table.component.scss'],
 })
-export class TaskTableComponent implements AfterViewInit {
+export class TaskTableComponent implements AfterViewInit, OnChanges {
   @Input() projectId!: number;
   @Input() userId?: number;
   @Input() statusId?: number;
@@ -33,7 +39,15 @@ export class TaskTableComponent implements AfterViewInit {
   private filter: string = '';
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns: string[] = ['id', 'name', 'description', 'actions'];
+  displayedColumns: string[] = [
+    'checkbox',
+    'id',
+    'name',
+    'status_id',
+    'priority_id',
+    'user_id',
+    'actions',
+  ];
 
   constructor(
     private taskService: TaskService,
@@ -41,7 +55,6 @@ export class TaskTableComponent implements AfterViewInit {
     private router: Router
   ) {
     this.dataSource = new TaskTableDataSource(this.taskService);
-    this.dataSource.load();
   }
 
   ngAfterViewInit(): void {
@@ -59,6 +72,12 @@ export class TaskTableComponent implements AfterViewInit {
      */
     this.paginator.page.pipe(tap(() => this.load())).subscribe();
     this.sort.sortChange.pipe(tap(() => this.load())).subscribe();
+  }
+
+  ngOnChanges(): void {
+    if (this.projectId) {
+      this.load();
+    }
   }
 
   /**
@@ -87,11 +106,18 @@ export class TaskTableComponent implements AfterViewInit {
   }
 
   onRowDoubleClick(task: Task): void {
-    this.open(task);
+    this.openEditDialog(task);
   }
 
-  open(row: Task): void {
-    this.router.navigate(['/tasks', row.id]);
+  toggle(row: Task): void {
+    if (row.status_id === TaskStatus.Done) {
+      row.status_id = TaskStatus.InProgress;
+    } else {
+      row.status_id = TaskStatus.Done;
+    }
+    this.taskService.update(row.id.toString(), row).subscribe((data: Task) => {
+      this.load();
+    });
   }
 
   openEditDialog(task: Task): void {

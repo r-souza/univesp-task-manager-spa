@@ -93,8 +93,7 @@ export class ProjectShowComponent implements OnInit {
 
   private getCurrentUser(): void {
     this.authService.getCurrentUser().subscribe((user) => {
-      this.userId = user.id;
-      this.task.user_id = this.userId;
+      this.task.user_id = user.id;
     });
   }
 
