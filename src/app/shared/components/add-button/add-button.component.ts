@@ -7,5 +7,6 @@ import { Component, Input } from '@angular/core';
 })
 export class AddButtonComponent {
   @Input() buttonLabel: string = 'Adicionar';
+  @Input() icon: string = 'add';
   constructor() {}
 }
