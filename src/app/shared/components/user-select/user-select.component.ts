@@ -18,6 +18,8 @@ export class UserSelectComponent implements OnInit {
   @Input() value!: number | undefined;
   @Input() required = false;
   @Input() filtering = false;
+  @Input() hint: string = 'Selecione um usuário';
+  @Input() filteringHint: string = 'Pressione ESC para limpar';
 
   @Output() outputOnChange: EventEmitter<boolean> = new EventEmitter(false);
   @Output() selectionChange: EventEmitter<MatSelectChange> = new EventEmitter();

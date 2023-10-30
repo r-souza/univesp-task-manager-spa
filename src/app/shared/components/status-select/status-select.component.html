@@ -12,7 +12,8 @@
         {{ status.name }}
       </mat-option>
     </mat-select>
-    <mat-hint *ngIf="filtering">Pressione ESC para limpar</mat-hint>
+    <mat-hint *ngIf="!filtering">{{ hint }}</mat-hint>
+    <mat-hint *ngIf="filtering">{{ filteringHint }}</mat-hint>
     <mat-error *ngIf="selectStatusFormGroup?.get('name')?.hasError('required')">
       Status é obrigatório
     </mat-error>
