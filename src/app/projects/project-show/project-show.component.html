@@ -33,6 +33,7 @@
               <app-status-select
                 (selectionChange)="onStatusSelectionChange($event)"
                 (resetSelect)="onStatusReset($event)"
+                [filtering]="true"
               ></app-status-select>
             </div>
 
@@ -40,6 +41,7 @@
               <app-priority-select
                 (selectionChange)="onPrioritySelectionChange($event)"
                 (resetSelect)="onPriorityReset($event)"
+                [filtering]="true"
               ></app-priority-select>
             </div>
 
@@ -47,6 +49,7 @@
               <app-user-select
                 (selectionChange)="onUserSelectionChange($event)"
                 (resetSelect)="onUserReset($event)"
+                [filtering]="true"
               ></app-user-select>
             </div>
           </div>
