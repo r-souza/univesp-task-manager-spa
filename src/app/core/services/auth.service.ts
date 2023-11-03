@@ -40,7 +40,6 @@ export class AuthService {
 
     this.apiService.postRequest<TokenDto>(this.authUrl, params).subscribe({
       next: (data: TokenDto) => {
-        console.log(data);
         try {
           this.tokenService.saveToken(data);
         } catch (e) {
