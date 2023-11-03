@@ -1,0 +1,21 @@
+<form [formGroup]="selectUserFormGroup">
+  <mat-form-field>
+    <mat-select
+      placeholder="Usuário"
+      formControlName="name"
+      [required]="required"
+      (keydown.esc)="reset()"
+      (selectionChange)="onSelectionChange($event)"
+    >
+      <mat-option *ngIf="filtering">Todos</mat-option>
+      <mat-option *ngFor="let user of users" [value]="user.id">
+        {{ user.name }}
+      </mat-option>
+    </mat-select>
+    <mat-hint *ngIf="!filtering">{{ hint }}</mat-hint>
+    <mat-hint *ngIf="filtering">{{ filteringHint }}</mat-hint>
+    <mat-error *ngIf="selectUserFormGroup?.get('name')?.hasError('required')">
+      Usuário é obrigatório
+    </mat-error>
+  </mat-form-field>
+</form>

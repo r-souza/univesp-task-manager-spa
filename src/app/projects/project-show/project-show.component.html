@@ -1,0 +1,68 @@
+<div
+  class="container"
+  fxLayout
+  fxLayout.xs="column"
+  fxLayoutAlign="center"
+  fxLayoutGap="10px"
+  fxLayoutGap.xs="5px"
+>
+  <app-loading-spinner [loading$]="isLoading$"></app-loading-spinner>
+
+  <div fxFlex.gt-md="65" fxFlex.md="80" fxFlex="90">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title
+          >Projeto {{ project.id }} - {{ project.name }}
+        </mat-card-title>
+        <mat-card-subtitle>Lista de tarefas do projeto</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div fxLayout="row" fxLayoutAlign="start end" fxLayoutGap="30px">
+          <div fxFlex="20%">
+            <app-add-button
+              class="add-button"
+              (click)="openCreateDialog()"
+              [buttonLabel]="addButtonLabel"
+              icon="add_task"
+            ></app-add-button>
+          </div>
+        </div>
+
+        <div class="container">
+          <div fxLayout="row" fxLayoutAlign="center end" fxLayoutGap="30px">
+            <div fxFlex="25%" fxFlexAlign="start start">
+              <app-status-select
+                (selectionChange)="onStatusSelectionChange($event)"
+                (resetSelect)="onStatusReset($event)"
+                [filtering]="true"
+              ></app-status-select>
+            </div>
+
+            <div fxFlex="25%" fxFlexAlign="start start">
+              <app-priority-select
+                (selectionChange)="onPrioritySelectionChange($event)"
+                (resetSelect)="onPriorityReset($event)"
+                [filtering]="true"
+              ></app-priority-select>
+            </div>
+
+            <div fxFlex="30%" fxFlexAlign="start send">
+              <app-user-select
+                (selectionChange)="onUserSelectionChange($event)"
+                (resetSelect)="onUserReset($event)"
+                [filtering]="true"
+              ></app-user-select>
+            </div>
+          </div>
+
+          <app-task-table
+            [projectId]="project.id"
+            [userId]="userId"
+            [statusId]="statusId"
+            [priorityId]="priorityId"
+          ></app-task-table>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

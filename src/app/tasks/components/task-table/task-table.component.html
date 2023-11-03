@@ -1,0 +1,98 @@
+<div class="container">
+  <app-loading-spinner [loading$]="dataSource.loading$"></app-loading-spinner>
+
+  <app-table-search-field
+    (search)="search($event)"
+    hint="Insira o nome do projeto que deseja localizar"
+  ></app-table-search-field>
+
+  <table
+    mat-table
+    class="mat-elevation-z8 full-width-table"
+    matSort
+    aria-label="Elements"
+  >
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="checkbox">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox
+          (click)="toggle(row)"
+          checked="{{ row.status_id == 3 ? 'true' : 'false' }}"
+        ></mat-checkbox>
+      </td>
+    </ng-container>
+
+    <!-- Id Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>#</th>
+      <td mat-cell *matCellDef="let row">{{ row.id }}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Nome</th>
+      <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+    </ng-container>
+
+    <!-- Description Column -->
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Descrição</th>
+      <td mat-cell *matCellDef="let row">{{ row.description }}</td>
+    </ng-container>
+
+    <!-- Status Column -->
+    <ng-container matColumnDef="status_id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+      <td mat-cell *matCellDef="let row">{{ row.status.name }}</td>
+    </ng-container>
+
+    <!-- Priority Column -->
+    <ng-container matColumnDef="priority_id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Prioridade</th>
+      <td mat-cell *matCellDef="let row">{{ row.priority.name }}</td>
+    </ng-container>
+
+    <!-- User Column -->
+    <ng-container matColumnDef="user_id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Usuário</th>
+      <td mat-cell *matCellDef="let row">
+        {{ row.user.name }}
+      </td>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <th></th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Descrição</th>
+      <td mat-cell *matCellDef="let row">
+        <button
+          *ngIf="!row.deleted_at"
+          mat-button
+          color="primary"
+          (click)="openEditDialog(row)"
+        >
+          <mat-icon matSuffix>edit</mat-icon>Editar
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: displayedColumns"
+      (dblclick)="onRowDoubleClick(row)"
+    ></tr>
+  </table>
+
+  <mat-paginator
+    #paginator
+    class="mat-elevation-z8"
+    [length]="dataSource.getCount()"
+    [pageIndex]="0"
+    [pageSize]="10"
+    [pageSizeOptions]="pageSizeOptions"
+    aria-label="Select page"
+  >
+  </mat-paginator>
+</div>

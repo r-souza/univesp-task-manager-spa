@@ -1,0 +1,14 @@
+mat-card {
+  min-width: 400px;
+  margin: 2em auto;
+  text-align: center;
+  backdrop-filter: blur(300px);
+  -webkit-backdrop-filter: blur(200px);
+  backdrop-filter: opacity(.6);
+  -webkit-backdrop-filter: opacity(.3);
+}
+
+mat-progress-spinner {
+  float: left;
+  vertical-align: middle;
+}

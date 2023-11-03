@@ -1,0 +1,18 @@
+<p mat-dialog-title>
+  {{ dialogAction }}
+</p>
+<mat-dialog-content>
+  <app-project-form [data]="data" (submitedEvent)="closeDialog($event)">
+  </app-project-form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button
+    mat-raised-button
+    color="primary"
+    [mat-dialog-close]="getFormValue()"
+    [disabled]="!isFormValid()"
+  >
+    Salvar
+  </button>
+</mat-dialog-actions>

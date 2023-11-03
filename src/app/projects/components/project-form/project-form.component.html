@@ -1,0 +1,54 @@
+<div class="container">
+  <form [formGroup]="projectFormGroup" (keydown.enter)="onSubmit()">
+    <div
+      class="container"
+      fxLayout
+      fxLayout.xs="column"
+      fxLayoutAlign="start"
+      fxLayoutGap="10px"
+    >
+      <div fxFlex="100%">
+        <mat-form-field>
+          <input
+            #name
+            matInput
+            placeholder="Nome"
+            formControlName="name"
+            required
+            autofocus
+          />
+          <mat-hint class="mat-caption"> Nome do Projeto </mat-hint>
+          <mat-error
+            *ngIf="projectFormGroup?.get('name')?.hasError('required')"
+          >
+            Nome é obrigatório
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div
+      class="container"
+      fxLayout
+      fxLayout.xs="column"
+      fxlayoutAlign="start start"
+      fxLayoutGap="30px"
+    >
+      <div fxFlex fxFlexAlign="center">
+        <mat-form-field>
+          <textarea
+            #description
+            matInput
+            placeholder="Descrição"
+            formControlName="description"
+            cdkTextareaAutosize
+            #autosize="cdkTextareaAutosize"
+            cdkAutosizeMinRows="7"
+            cdkAutosizeMaxRows="10"
+          ></textarea>
+          <mat-hint class="mat-caption"> Descrição </mat-hint>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+</div>

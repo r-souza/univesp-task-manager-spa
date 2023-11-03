@@ -1,0 +1,28 @@
+<div
+  class="container"
+  fxLayout
+  fxLayout.xs="column"
+  fxLayoutAlign="center"
+  fxLayoutGap="10px"
+  fxLayoutGap.xs="5px"
+>
+  <div fxFlex.gt-md="65" fxFlex.md="80" fxFlex="90">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Lista de Projetos</mat-card-title>
+        <mat-card-subtitle>Gerenciamento de Projetos</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div fxLayout="row">
+          <div fxFlex="20%">
+            <app-add-button
+              (click)="openCreateDialog()"
+              [buttonLabel]="addButtonLabel"
+            ></app-add-button>
+          </div>
+        </div>
+        <app-project-table></app-project-table>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
