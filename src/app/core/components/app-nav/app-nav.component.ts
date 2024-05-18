@@ -10,7 +10,7 @@ import { AuthService } from '../../services';
   styleUrls: ['./app-nav.component.scss'],
 })
 export class AppNavComponent {
-  appTitle: string = 'Gerenciador de Tarefas';
+  appTitle: string = 'Gerenciador de Estudos';
   user$: Observable<User>;
 
   constructor(private authService: AuthService) {
