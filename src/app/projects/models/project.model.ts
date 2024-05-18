@@ -3,6 +3,8 @@ export class Project {
   name!: string;
   description?: string;
   // tslint:disable-next-line: variable-name
+  estimated_duration?: number;
+  // tslint:disable-next-line: variable-name
   created_at?: Date;
   // tslint:disable-next-line: variable-name
   updated_at?: Date;

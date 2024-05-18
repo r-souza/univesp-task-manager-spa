@@ -22,6 +22,7 @@ export class ProjectFormComponent implements OnInit {
     this.projectFormGroup = this.formBuilder.group({
       name: [this.data.name, Validators.required],
       description: [this.data.description],
+      estimated_duration: [this.data.estimated_duration, Validators.min(0)],
     });
   }
 

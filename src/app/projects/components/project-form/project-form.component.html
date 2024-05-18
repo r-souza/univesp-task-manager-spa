@@ -50,5 +50,31 @@
         </mat-form-field>
       </div>
     </div>
+    <div
+      class="container"
+      fxLayout
+      fxLayout.xs="column"
+      fxLayoutAlign="start"
+      fxLayoutGap="10px"
+    >
+      <div fxFlex="100%">
+        <mat-form-field>
+          <input
+            #name
+            matInput
+            placeholder="Tempo estimado para conclusão"
+            formControlName="estimated_duration"
+            type="number"
+            min="0"
+          />
+          <mat-hint class="mat-caption">Tempo estimado em minutos </mat-hint>
+          <mat-error
+            *ngIf="projectFormGroup?.get('estimated_duration')?.hasError('min')"
+          >
+            Tempo estimado deve ser maior que 0
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
   </form>
 </div>
