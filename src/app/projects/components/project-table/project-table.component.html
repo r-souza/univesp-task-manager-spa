@@ -30,6 +30,20 @@
       <td mat-cell *matCellDef="let row">{{ row.description }}</td>
     </ng-container>
 
+    <!-- Estimated Duration Column -->
+    <ng-container matColumnDef="estimated_duration">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Duração Estimada
+      </th>
+      <td mat-cell *matCellDef="let row">
+        {{
+          row.estimated_duration
+            ? row.estimated_duration + " minutos"
+            : "Não informado"
+        }}
+      </td>
+    </ng-container>
+
     <!-- Actions Column -->
     <ng-container matColumnDef="actions">
       <th></th>

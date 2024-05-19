@@ -14,7 +14,12 @@
         <mat-card-title
           >Projeto {{ project.id }} - {{ project.name }}
         </mat-card-title>
-        <mat-card-subtitle>Lista de tarefas do projeto</mat-card-subtitle>
+        <mat-card-subtitle>
+          <span *ngIf="project.description">{{ project.description }}</span>
+          <span *ngIf="project.estimated_duration">
+            - Duração Estimada: {{ project.estimated_duration }} minutos
+          </span>
+        </mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
         <div fxLayout="row" fxLayoutAlign="start end" fxLayoutGap="30px">

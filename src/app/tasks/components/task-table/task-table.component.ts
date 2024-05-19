@@ -46,8 +46,11 @@ export class TaskTableComponent implements AfterViewInit, OnChanges {
     'status_id',
     'priority_id',
     'user_id',
+    'effective_duration',
     'actions',
   ];
+
+  displayedColumnsFooter: string[] = ['checkbox', 'effective_duration'];
 
   constructor(
     private taskService: TaskService,
@@ -124,7 +127,7 @@ export class TaskTableComponent implements AfterViewInit, OnChanges {
     const dialogRef: MatDialogRef<TaskFormDialogComponent> = this.dialog.open(
       TaskFormDialogComponent,
       {
-        width: '720px',
+        width: '800px',
         data: task,
       }
     );
@@ -140,6 +143,14 @@ export class TaskTableComponent implements AfterViewInit, OnChanges {
           });
       }
     });
+  }
+
+  public getTotalEffectiveDuration() {
+    const totalTimeInMinutes = this.dataSource.getTotalEffectiveDuration();
+    const hours = Math.floor(totalTimeInMinutes / 60);
+    const minutes = totalTimeInMinutes % 60;
+
+    return `${hours}h ${minutes}m`;
   }
 
   private resetPaginator(): void {

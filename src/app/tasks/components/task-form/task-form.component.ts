@@ -28,6 +28,7 @@ export class TaskFormComponent implements OnInit, AfterViewInit {
     this.taskFormGroup = this.formBuilder.group({
       name: [this.data.name, Validators.required],
       description: [this.data.description],
+      effective_duration: [this.data.effective_duration, Validators.min(0)],
       priority_id: [this.data.priority_id],
       status_id: [this.data.status_id],
       user_id: [this.data.user_id],

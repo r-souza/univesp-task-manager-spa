@@ -52,4 +52,11 @@ export class TaskTableDataSource extends DataSource<Task> {
   getCount(): number {
     return this.count;
   }
+
+  getTotalEffectiveDuration() {
+    return this.tasksSubject.value.reduce(
+      (acc, task) => acc + (task.effective_duration || 0),
+      0
+    );
+  }
 }
