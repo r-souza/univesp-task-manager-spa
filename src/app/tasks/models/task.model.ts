@@ -19,6 +19,8 @@ export class Task {
   name!: string;
   description?: string;
   completed: boolean = false;
+  // tslint:disable-next-line: variable-name
+  effective_duration?: number;
 
   priority_id: number = TaskPriority.Medium;
   status_id: number = TaskStatus.New;

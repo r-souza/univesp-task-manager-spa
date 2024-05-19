@@ -29,7 +29,13 @@ export class ProjectTableComponent implements AfterViewInit {
   private filter: string = '';
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns: string[] = ['id', 'name', 'description', 'actions'];
+  displayedColumns: string[] = [
+    'id',
+    'name',
+    'description',
+    'estimated_duration',
+    'actions',
+  ];
 
   constructor(
     private projectService: ProjectService,

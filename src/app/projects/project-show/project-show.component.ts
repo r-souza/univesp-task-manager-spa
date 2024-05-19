@@ -59,7 +59,7 @@ export class ProjectShowComponent implements OnInit {
     const dialogRef: MatDialogRef<TaskFormDialogComponent> = this.dialog.open(
       TaskFormDialogComponent,
       {
-        width: '720px',
+        width: '800px',
         data: this.task,
       }
     );

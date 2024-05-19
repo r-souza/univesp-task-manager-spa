@@ -20,7 +20,7 @@
     fxLayoutAlign="start start"
     fxLayoutGap="30px"
   >
-    <div fxFlex="50%" fxFlexFill>
+    <div fxFlex="30%" fxFlexFill>
       <app-priority-select
         (selectionChange)="prioritySelected($event)"
         [value]="data.priority_id"
@@ -28,12 +28,31 @@
       ></app-priority-select>
     </div>
 
-    <div fxFlex="50%" fxFlexFill>
+    <div fxFlex="30%" fxFlexFill>
       <app-status-select
         (selectionChange)="statusSelected($event)"
         [value]="data.status_id"
         [required]="true"
       ></app-status-select>
+    </div>
+
+    <div fxFlex="40%">
+      <mat-form-field>
+        <input
+          #effective_duration
+          matInput
+          placeholder="Duração Efetiva"
+          formControlName="effective_duration"
+          type="number"
+          min="0"
+        />
+        <mat-hint class="mat-caption">Tempo estimado em minutos </mat-hint>
+        <mat-error
+          *ngIf="taskFormGroup?.get('effective_duration')?.hasError('min')"
+        >
+          Duração deve ser maior que 0
+        </mat-error>
+      </mat-form-field>
     </div>
   </div>
 
