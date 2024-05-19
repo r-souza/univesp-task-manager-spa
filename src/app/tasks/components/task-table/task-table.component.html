@@ -21,6 +21,9 @@
           checked="{{ row.status_id == 3 ? 'true' : 'false' }}"
         ></mat-checkbox>
       </td>
+      <td mat-footer-cell *matFooterCellDef colspan="6">
+        Duração Efetiva Total
+      </td>
     </ng-container>
 
     <!-- Id Column -->
@@ -61,6 +64,21 @@
       </td>
     </ng-container>
 
+    <!-- Effective Duration Column -->
+    <ng-container matColumnDef="effective_duration">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Duração Efetiva</th>
+      <td mat-cell *matCellDef="let row">
+        {{
+          row.effective_duration
+            ? row.effective_duration + " minutos"
+            : "Não informado"
+        }}
+      </td>
+      <td mat-footer-cell *matFooterCellDef colspan="2">
+        {{ getTotalEffectiveDuration() }}
+      </td></ng-container
+    >
+
     <!-- Actions Column -->
     <ng-container matColumnDef="actions">
       <th></th>
@@ -83,6 +101,7 @@
       *matRowDef="let row; columns: displayedColumns"
       (dblclick)="onRowDoubleClick(row)"
     ></tr>
+    <tr mat-footer-row *matFooterRowDef="displayedColumnsFooter"></tr>
   </table>
 
   <mat-paginator
